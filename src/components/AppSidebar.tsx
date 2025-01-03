@@ -8,14 +8,13 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Home, Settings, User, HelpCircle, TrendingUp, Newspaper } from "lucide-react";
+import { Home, User, HelpCircle, TrendingUp, Newspaper } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const menuItems = [
   { icon: Home, label: "IPOs", path: "/" },
   { icon: TrendingUp, label: "GMP", path: "/gmp" },
   { icon: Newspaper, label: "News", path: "/news" },
-  { icon: Settings, label: "Settings", path: "/settings" },
   { icon: HelpCircle, label: "Help", path: "/help" },
 ];
 

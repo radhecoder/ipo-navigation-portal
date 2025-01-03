@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import ListItem from "@/components/ListItem";
 import { Badge } from "@/components/ui/badge";
 
@@ -26,6 +27,8 @@ const mockIpos = [
 ];
 
 const IpoList = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="page-transition">
       <div className="mb-6">
@@ -44,6 +47,8 @@ const IpoList = () => {
                 {ipo.status}
               </Badge>
             }
+            className="cursor-pointer"
+            onClick={() => navigate(`/ipo/${ipo.id}`)}
           />
         ))}
       </div>

@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 import Index from "./pages/Index";
 import IpoList from "./pages/IpoList";
+import IpoDetails from "./pages/IpoDetails";
 import GmpList from "./pages/GmpList";
 import NewsList from "./pages/NewsList";
 
@@ -20,6 +21,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />}>
             <Route index element={<IpoList />} />
+            <Route path="ipo/:id" element={<IpoDetails />} />
             <Route path="gmp" element={<GmpList />} />
             <Route path="news" element={<NewsList />} />
           </Route>

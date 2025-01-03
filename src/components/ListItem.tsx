@@ -6,11 +6,15 @@ interface ListItemProps {
   subtitle?: string;
   extra?: React.ReactNode;
   className?: string;
+  onClick?: () => void;
 }
 
-const ListItem = ({ title, subtitle, extra, className }: ListItemProps) => {
+const ListItem = ({ title, subtitle, extra, className, onClick }: ListItemProps) => {
   return (
-    <Card className={cn("p-4 mb-3 hover:shadow-md transition-shadow", className)}>
+    <Card 
+      className={cn("p-4 mb-3 hover:shadow-md transition-shadow", className)}
+      onClick={onClick}
+    >
       <div className="flex justify-between items-start">
         <div>
           <h3 className="font-medium">{title}</h3>
