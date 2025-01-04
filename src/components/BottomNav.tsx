@@ -1,40 +1,58 @@
-import { Home, TrendingUp, Newspaper } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Home, TrendingUp, Newspaper, Shield } from "lucide-react";
 
 const BottomNav = () => {
-  const location = useLocation();
-
-  const isActive = (path: string) => location.pathname === path;
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 flex justify-around items-center z-50">
-      <Link
-        to="/gmp"
-        className={`flex flex-col items-center space-y-1 ${
-          isActive("/gmp") ? "text-primary" : "text-gray-600"
-        }`}
-      >
-        <TrendingUp size={24} />
-        <span className="text-xs">GMP</span>
-      </Link>
-      <Link
-        to="/"
-        className={`flex flex-col items-center space-y-1 ${
-          isActive("/") ? "text-primary" : "text-gray-600"
-        }`}
-      >
-        <Home size={24} />
-        <span className="text-xs">IPOs</span>
-      </Link>
-      <Link
-        to="/news"
-        className={`flex flex-col items-center space-y-1 ${
-          isActive("/news") ? "text-primary" : "text-gray-600"
-        }`}
-      >
-        <Newspaper size={24} />
-        <span className="text-xs">News</span>
-      </Link>
+    <div className="fixed bottom-0 left-0 right-0 bg-background border-t py-2 px-4">
+      <nav className="flex justify-around items-center">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `flex flex-col items-center space-y-1 p-2 ${
+              isActive ? "text-primary" : "text-muted-foreground"
+            }`
+          }
+        >
+          <Home className="w-5 h-5" />
+          <span className="text-xs">IPOs</span>
+        </NavLink>
+        
+        <NavLink
+          to="/gmp"
+          className={({ isActive }) =>
+            `flex flex-col items-center space-y-1 p-2 ${
+              isActive ? "text-primary" : "text-muted-foreground"
+            }`
+          }
+        >
+          <TrendingUp className="w-5 h-5" />
+          <span className="text-xs">GMP</span>
+        </NavLink>
+        
+        <NavLink
+          to="/news"
+          className={({ isActive }) =>
+            `flex flex-col items-center space-y-1 p-2 ${
+              isActive ? "text-primary" : "text-muted-foreground"
+            }`
+          }
+        >
+          <Newspaper className="w-5 h-5" />
+          <span className="text-xs">News</span>
+        </NavLink>
+
+        <NavLink
+          to="/admin"
+          className={({ isActive }) =>
+            `flex flex-col items-center space-y-1 p-2 ${
+              isActive ? "text-primary" : "text-muted-foreground"
+            }`
+          }
+        >
+          <Shield className="w-5 h-5" />
+          <span className="text-xs">Admin</span>
+        </NavLink>
+      </nav>
     </div>
   );
 };

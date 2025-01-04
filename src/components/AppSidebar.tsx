@@ -1,56 +1,64 @@
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { Home, User, HelpCircle, TrendingUp, Newspaper } from "lucide-react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Home, TrendingUp, Newspaper, Shield } from "lucide-react";
 
-const menuItems = [
-  { icon: Home, label: "IPOs", path: "/" },
-  { icon: TrendingUp, label: "GMP", path: "/gmp" },
-  { icon: Newspaper, label: "News", path: "/news" },
-  { icon: HelpCircle, label: "Help", path: "/help" },
-];
-
-export function AppSidebar() {
+const AppSidebar = () => {
   return (
-    <Sidebar>
-      <SidebarContent>
-        <div className="p-4 border-b">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <User className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <h3 className="font-medium">IPO Dekho</h3>
-              <p className="text-sm text-muted-foreground">Your IPO Assistant</p>
-            </div>
-          </div>
-        </div>
-        <SidebarGroup>
-          <SidebarGroupLabel>Menu</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.label}>
-                  <SidebarMenuButton asChild>
-                    <Link to={item.path} className="flex items-center space-x-3">
-                      <item.icon className="w-5 h-5" />
-                      <span>{item.label}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+    <div className="w-64 bg-background border-r h-screen p-4 flex flex-col">
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold">IPO Dashboard</h1>
+      </div>
+      
+      <nav className="space-y-2">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `flex items-center space-x-2 p-2 rounded-lg hover:bg-accent transition-colors ${
+              isActive ? "bg-accent" : ""
+            }`
+          }
+        >
+          <Home className="w-5 h-5" />
+          <span>IPO List</span>
+        </NavLink>
+        
+        <NavLink
+          to="/gmp"
+          className={({ isActive }) =>
+            `flex items-center space-x-2 p-2 rounded-lg hover:bg-accent transition-colors ${
+              isActive ? "bg-accent" : ""
+            }`
+          }
+        >
+          <TrendingUp className="w-5 h-5" />
+          <span>GMP</span>
+        </NavLink>
+        
+        <NavLink
+          to="/news"
+          className={({ isActive }) =>
+            `flex items-center space-x-2 p-2 rounded-lg hover:bg-accent transition-colors ${
+              isActive ? "bg-accent" : ""
+            }`
+          }
+        >
+          <Newspaper className="w-5 h-5" />
+          <span>News</span>
+        </NavLink>
+
+        <NavLink
+          to="/admin"
+          className={({ isActive }) =>
+            `flex items-center space-x-2 p-2 rounded-lg hover:bg-accent transition-colors ${
+              isActive ? "bg-accent" : ""
+            }`
+          }
+        >
+          <Shield className="w-5 h-5" />
+          <span>Admin</span>
+        </NavLink>
+      </nav>
+    </div>
   );
-}
+};
+
+export default AppSidebar;
