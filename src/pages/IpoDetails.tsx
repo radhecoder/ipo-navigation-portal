@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, CheckCircle } from "lucide-react";
 
 const mockIpoDetails = {
   1: {
@@ -20,6 +22,13 @@ const mockIpoDetails = {
       profit2023: "₹120 Cr",
       revenue2022: "₹650 Cr",
       profit2022: "₹85 Cr"
+    },
+    allotmentLink: "https://linkintime.co.in/MIPO/IPO.html",
+    dematLinks: {
+      zerodha: "https://zerodha.com/open-account",
+      groww: "https://groww.in/open-demat-account",
+      upstox: "https://upstox.com/open-demat-account",
+      angelOne: "https://www.angelone.in/open-demat-account",
     }
   },
   2: {
@@ -39,6 +48,13 @@ const mockIpoDetails = {
       profit2023: "₹65 Cr",
       revenue2022: "₹320 Cr",
       profit2022: "₹40 Cr"
+    },
+    allotmentLink: "https://linkintime.co.in/MIPO/IPO.html",
+    dematLinks: {
+      zerodha: "https://zerodha.com/open-account",
+      groww: "https://groww.in/open-demat-account",
+      upstox: "https://upstox.com/open-demat-account",
+      angelOne: "https://www.angelone.in/open-demat-account",
     }
   },
   3: {
@@ -58,6 +74,13 @@ const mockIpoDetails = {
       profit2023: "₹180 Cr",
       revenue2022: "₹850 Cr",
       profit2022: "₹120 Cr"
+    },
+    allotmentLink: "https://linkintime.co.in/MIPO/IPO.html",
+    dematLinks: {
+      zerodha: "https://zerodha.com/open-account",
+      groww: "https://groww.in/open-demat-account",
+      upstox: "https://upstox.com/open-demat-account",
+      angelOne: "https://www.angelone.in/open-demat-account",
     }
   }
 } as const;
@@ -72,6 +95,14 @@ const IpoDetails = () => {
     return <div className="p-4">IPO not found</div>;
   }
 
+  const handleOpenDematAccount = (url: string) => {
+    window.open(url, '_blank');
+  };
+
+  const handleCheckAllotment = () => {
+    window.open(ipo.allotmentLink, '_blank');
+  };
+
   return (
     <div className="page-transition space-y-4 p-4">
       <div className="flex items-center justify-between">
@@ -79,6 +110,25 @@ const IpoDetails = () => {
         <Badge variant={ipo.status === "Open" ? "default" : ipo.status === "Upcoming" ? "secondary" : "outline"}>
           {ipo.status}
         </Badge>
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <Button 
+          onClick={handleCheckAllotment}
+          className="w-full"
+          variant="default"
+        >
+          <CheckCircle className="mr-2" />
+          Check IPO Allotment
+        </Button>
+        <Button 
+          onClick={() => handleOpenDematAccount(ipo.dematLinks.zerodha)}
+          className="w-full"
+          variant="outline"
+        >
+          <ExternalLink className="mr-2" />
+          Open Demat Account
+        </Button>
       </div>
 
       <Card>
