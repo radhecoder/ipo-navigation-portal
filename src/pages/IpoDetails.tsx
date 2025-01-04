@@ -60,11 +60,13 @@ const mockIpoDetails = {
       profit2022: "₹120 Cr"
     }
   }
-};
+} as const;
+
+type IpoId = keyof typeof mockIpoDetails;
 
 const IpoDetails = () => {
   const { id } = useParams();
-  const ipo = id ? mockIpoDetails[id as keyof typeof mockIpoDetails] : null;
+  const ipo = id ? mockIpoDetails[Number(id) as IpoId] : null;
 
   if (!ipo) {
     return <div className="p-4">IPO not found</div>;
